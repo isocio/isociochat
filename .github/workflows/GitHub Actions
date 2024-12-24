@@ -51,7 +51,7 @@ jobs:
           name: node-app
 
       # خطوة 2: تسجيل الدخول إلى Azure
-- name: 🗝️ Azure Login
+    - name: 🗝️ Azure Login
   uses: azure/login@v1
   with:
     client-id: ${{ secrets.AZURE_CLIENT_ID }}
