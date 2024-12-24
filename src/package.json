@@ -1,3 +1,10 @@
+- name: Verify package.json existence
+  run: |
+    if [ ! -f "package.json" ]; then
+      echo "Error: package.json not found in the expected directory!"
+      exit 1
+    fi
+
 {
   "name": "src",
   "version": "0.1.0",
