@@ -1,22 +1,24 @@
-name: Validate bicep scripts
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-      - master
-  pull_request:
-    branches:
-      - main
-      - master
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      # تثبيت Node.js لتشغيل npm
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # حدد إصدار Node.js
+
+      # تثبيت الحزم إذا كان package.json موجودًا
+      - name: Install dependencies
+        run: |
+          if [ -f "package.json" ]; then
+            npm install
+          else
+            echo "No package.json file found. Skipping npm install."
+          fi
 
       - name: Build Bicep for linting
         uses: azure/CLI@v1
